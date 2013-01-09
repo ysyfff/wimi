@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href = "{{STATIC_URL}}css/info.css" />
+<link rel="stylesheet" type="text/css" href = "{{STATIC_URL}}css/myshop.css" />
+{% endblock %}
+{% block js%}
+<script type="text/javascript" src="{{STATIC_URL}}js/slide.js"></script>
+{% endblock%}
+
+
+{% block title %}
+myinfo
+{% endblock %}
+
+{% block content %}
+    <div id="sidecontent">
+        <div id="sidebar">
+            <ul>
+                {%if is_buyer%}
+                <li><a href="/users/{{user_id}}/info/">我的信息</a></li>
+                <li><a href="/users/{{user_id}}/mdfinfo/">修改信息</a></li>
+                <li><a href="/users/{{user_id}}/mdfpwd/">修改密码</a></li>
+                {%else%}
+                <li><a href="/users/{{user_id}}/info/">我的信息</a></li>
+                <li><a href="/users/{{user_id}}/mdfinfo/">修改信息</a></li>
+                <li><a href="/users/{{user_id}}/mdfpwd/">修改密码</a></li>
+                {%endif%}
+            </ul>
+        </div>
+        {%block usercontent%}
+        <div id="content">
+                <table>
+                <caption>我的信息 >></caption>
+                <tr>
+                    <td style="width:60px;">昵称:</td>
+                    <td align="left">{{username}}</td>
+                </tr>
+                <tr>
+                    <td style="width:60px;">学号:</td>
+                    <td>{{idnum}}</td>
+                </tr>
+                <tr>
+                    <td style="width:60px;">姓名:</td>
+                    <td>{{name}}</td>
+                </tr>
+                <tr>
+                    <td style="width:60px;">电话:</td>
+                    <td>{{teleph}}</td>
+                </tr>
+                <tr>
+                    <td style="width:60px;">地址:</td>
+                    <td>{{address}}</td>
+                </tr>
+            </table>
+        </div>
+        {%endblock%}
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<html>
+<head>
+    <link rel='stylesheet' type='text/css' href="{{STATIC_URL}}css/head.css" />
+    <link rel="shortcut icon" href="{{STATIC_URL}}img/r_logo.png"/>
+    {% block css %}
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/clock.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/slide.js"></script>
+    <title>
+        {%block title%}
+        {% endblock %}
+    </title>
+</head>
+<body  onload="Clock()" >
+
+    <div id="head">
+        <div id="h_logo_box">
+            <div id="h_logo">
+                <a href='#'>WIMI</a>
+            </div>
+            <div id="h_box">
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    {% if is_buyer or not is_login%}
+                        <li><a href="/shops/shop/">商店</a></li>
+                    {%endif%}   
+                    {%if is_login%}
+                        <li><a href="/shops/{{user_id}}/current/bag/">购物车</a></li>
+                    {% else%}
+                        <li><a href="/shops/current/bag/">购物车</a></li>
+                    {%endif%}
+                    {%if is_login and not is_buyer%}
+                        <li><a href="/shops/{{user_id}}/all/food/">商品库</a></li>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+        <div id="h_user">
+            <ul>
+                {% if is_login %}
+                    <li><a href="/users/logout/">登出</a></li>
+                    <li>:)&nbsp;<a href="/users/{{user_id}}/info/">{{username}}</a></li>
+                {% else %}
+                    <li><a href="/users/register/">注册</a></li>
+                    <li><a href="/users/login/">登录</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div id="clock">
+        <div id='txt'>
+        </div>
+    </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

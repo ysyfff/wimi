@@ -1,0 +1,24 @@
+#sidecontent {left:0px; width: 960px; height: 0px; margin: 0; top:33px; position: absolute;float: left;}
+
+#sidebar{left:0px;width:200px; height: 100%;margin:0 0 0 2px; top:38px; position: fixed; float: left;background: url("/static/img/sidebar3.png");}
+#sidebar ul{ width:200px;float:left; display:inline;}
+#sidebar ul li{ width:200px;float:left;}
+#sidebar ul li a{width:200px;height:31px;float:left; font-size:18px; text-align:center; line-height:33px; color:#000; text-decoration: none;}
+#sidebar ul li a:hover{background:#f47920; }
+
+#content {left:350px;width: 700px; height: auto; position: relative;float: left;top:60px; }
+#content table {font-size:20px;color: #000; border:1px solid red;background: url("/static/img/sidebar3.png");;}
+#content table caption {background:url("/static/img/sidebar3.png");;border:1px solid red; padding:5px 0 5px 0;}
+
+div.panel, p.flip, label.flip{color:#000;margin: 0px;padding: 0px; text-align: center; background: url("/static/img/sidebar3.png");; border: solid 1px red; width: 494px;}
+div.panel{height: auto;display: none;}
+label.flip{font-size:20px; padding:5px 0 5px 0;}
+p.flip{font-size:20px; padding:5px 0 5px 0;}
+#oper{left:0px; width: 496px; height: auto; position: relative; float: left; top:1px;} 
+#notdel{float: left;}
+#del{float: right;}
+
+#remark{float: right; position: relative;left: 6px;width: auto;height:auto;top:0px;}
+#remark textarea {background:url("/static/img/sidebar3.png");;color:#fff; border:1px solid red;}
+#mdffood{float: left; position: relative;width: auto;height:auto;top:0px;}
+#mdffood input {background:url("/static/img/sidebar3.png");color:#fff; border:1px solid red;font-size: 18px;padding: 4px 4px 2px 4px;}

@@ -1,0 +1,112 @@
+{% extends "users/info.html"%}
+
+{% block title %}
+外卖网首购物车
+{% endblock %}
+
+{% block content %}
+    <div id="sidecontent">
+        <div id="sidebar">
+            <ul>
+                <li><a href="/shops/{{user_id}}/current/bag/">最新订单({{count1}})</a></li>
+                <li><a href="/shops/{{user_id}}/ready/bag/">正在准备({{count2}})</a></li>
+                <li><a href="/shops/{{user_id}}/deal/bag/">已经成交({{count3}})</a></li>
+                <li><a href="/shops/{{user_id}}/fail/bag/">交易失败({{count4}})</a></li>
+                <li><hr style="border:1px solid red; width:190px;"/></li>
+                <li><a href="/shops/{{user_id}}/today/bag/">今天之内({{count5}})</a></li>
+                <li><a href="/shops/{{user_id}}/bftoday/bag/">今天之前({{count6}})</a></li>
+            </ul>
+        </div>
+        {%block bagcontent%}
+        <div id="content">
+            {%for tl in all_list%}
+               {% if is_buyer %}
+        <div id="remark">
+                      <textarea  readonly="readonly" cols="15" rows="5">{{tl.remark}}</textarea>
+                    </div>
+                    <table>
+                        <caption>
+                            时间:{{tl.time}}
+                        </caption>
+                        <tr>
+                            
+                            <th style="width:160px;text-align:center">卖家</th>
+                <th style="width:160px;text-align:center">卖家电话</th>
+                            <th style="width:160px;text-align:center">总价(元)</th>
+                        </tr>
+                        <tr>
+                            <td style="width:160px;text-align:center">{{tl.shop.name}}</td>
+                            <td style="width:160px;text-align:center">{{tl.shop.teleph}}</td>
+                            <td style="width:160px;text-align:center">{{tl.money}}</td>
+                        </tr>
+                    </table>
+
+                {%else%}
+<div id="remark">
+                      <textarea readonly="readonly" cols="15" cols="15" rows="5">{{tl.remark}}</textarea>
+                    </div>
+                    <table>
+                        <caption >时间:{{tl.time}}</caption>
+                        <tr>
+                            
+                            <th style="width:160px;text-align:center">买家</th>
+                <th style="width:160px;text-align:center">买家电话</th>
+                            <th style="width:160px;text-align:center">总价(元)</th>
+                        </tr>
+                        <tr>
+                            <td style="width:160px;text-align:center">{{tl.buyer.username}}</td>
+                            <td style="width:160px;text-align:center">{{tl.sbpro.teleph}}</td>
+                            <td style="width:160px;text-align:center">{{tl.money}}</td>
+                        </tr>
+                    </table>
+                {%endif%}
+	        
+                <div class="panel">
+                <table >
+                    <tr>
+                        <th style="width:160px;">名称</th>
+                        <th style="width:160px;text-align:center">单价(元)</th>
+                        <th style="width:160px;text-align:center">数量(份)</th>
+                    </tr>
+                    {%for f in tl.fooditem_set.all%}
+                        <tr>
+                            <td style="width:160px;">{{f.name}}</td>
+                            <td style="width:160px;text-align:center">{{f.price}}</td>
+                            <td style="width:160px;text-align:center">{{f.quantity}}</td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            <p class="flip">订单详情>></p>
+            <form action="/shops/{{user_id}}/current/bag/" method="post">
+                {%csrf_token%}
+            {%if is_buyer%}
+            <div id="oper">
+                
+                <div id="del">
+                    <input type="image" alt="submit" src="{{STATIC_URL}}img/oper/del.gif" 
+                    title="删除交易" name="oper"  value="d{{tl.id}}"/>
+                </div>
+            </div>
+            {%else%}
+            <div id="oper">
+                <div id="notdel">
+                <input type="image" alt="submit" src="{{STATIC_URL}}img/oper/redy.gif" 
+                title="已准备"name="oper"  value="r{{tl.id}}" />
+                </div>
+                 
+                
+                <div id="del">
+                <input type="image" alt="submit" src="{{STATIC_URL}}img/oper/del.gif"
+                title="删除交易" name="oper"  value="d{{tl.id}}"/>
+                </div>
+            </div>
+            {%endif%}
+            </form>
+                <br/>
+                <br/>
+        {%endfor%}
+        </div>
+        {%endblock%}
+    </div>
+{% endblock %}

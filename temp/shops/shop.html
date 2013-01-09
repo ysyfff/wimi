@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shops.css" />
+{% endblock %}
+
+{% block title %}
+外卖网商店
+{% endblock %}
+
+{% block content %}
+    <div id='shop'>
+        <div id="s_box">
+            <ul>
+                {% for s in shop %}
+                    <li><a href="/shops/{{s.id}}/shop/">{{s.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

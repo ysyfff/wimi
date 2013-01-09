@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{{STATIC_URL}}css/home.css" />
+{% endblock %}
+
+{% block title %}
+外卖网首页
+ {% endblock %}
+
+{% block content %}
+<div id="home">
+    {% if errors_msg %}
+        <font color='blue' size="4"> {{errors_msg.0}} </font>
+    {% endif %}
+    <br/>
+    <br/>
+    <img src="{{STATIC_URL}}img/logo.png" />
+    <br/>
+    <br/>
+    <font color="#fff" size="4">WIMI：是外卖的意思，它就是本网站的logo了。<br/>
+        本站宗旨："手指点一点，饭菜到眼前"是本站不懈追求的目标。
+        <br/>
+    </font>
+</div>
+{% endblock %}

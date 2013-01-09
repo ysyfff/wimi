@@ -1,0 +1,40 @@
+{% extends "users/info.html"%}
+
+{% block title %}
+bag
+{% endblock %}
+
+{% block content %}
+    <div id="sidecontent">
+        <div id="sidebar">
+            <ul>
+                <li><a href="/shops/{{user_id}}/all/food/">商品列表</a></li>
+                <li><a href="/shops/{{user_id}}/add/food/">增加商品</a></li>
+            </ul>
+        </div>
+        {%block foodcontent%}
+        <div id="content">
+            <form action="/shops/{{user_id}}/mdf/{{food_id}}/food/" method="post">
+                {%csrf_token%}
+                <div id="ms_box">
+                    <div id="mdffood">
+                    <table>
+                        <caption>修改商品</caption>
+                        <tr>
+                            <th>名称</th><th>价格</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name='fname' value="{{mf.name}}" style="width:200px;"/></td>
+                            <td><input type="text" name='fprice' value="{{mf.price}}" style="width:100px;"/></td>
+                        </tr>
+                        <tr>
+                            <td></td><td align="right"><button type="submit" value="提交" >提交</button></td>
+                        </tr>
+                </table>
+                </div>
+                </div>
+            </form>
+        </div>
+        {%endblock%}
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "users/info.html"%}
+
+{% block title%}
+mdfinfo
+{% endblock%}
+
+{%block usercontent%}
+        <div id="content">
+            <form action="/users/{{user_id}}/mdfinfo/" method="post">
+                {% csrf_token %}
+                <table>
+                    <caption>修改信息 >></caption>
+                    <tr>
+                        <td>学号:</td><td>{{form.idnum}}</td><td>{{form.idnum.errors}}</td>
+                    </tr>
+                    <tr>
+                        <td>姓名:</td><td>{{form.name}}</td><td>{{form.name.errors}}</td>
+                    </tr>
+                    <tr>
+                        <td>电话:</td><td>{{form.teleph}}</td><td>{{form.teleph.errors}}</td>
+                    </tr>
+                    <tr>
+                        <td>地址:</td><td>{{form.address}}</td><td>{{form.address.errors}}</td>
+                    </tr>
+                    <tr>
+                    <td><input type="hidden" name="next" value="{{next}}"/></td>
+                    <td align="right"><input type="submit" vlaue="login"/></td>
+                </tr>
+                {% if success_msg%}
+                <tr>
+                        <td></td><td>{{success_msg.0}}</td><td></td>
+                    </tr>
+                    {%endif%}
+                </table>
+            </form>
+        </div>
+{%endblock%}
