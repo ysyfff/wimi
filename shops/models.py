@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
-from django.utils import timezone
 from users.models import SBProfile
+
+
 class Shop(models.Model):
     sid = models.CharField(max_length=8)
     name = models.CharField(max_length=20)
@@ -14,6 +14,12 @@ class Shop(models.Model):
     def __unicode__(self):
         return self.name
 
+    @classmethod
+    def create_shop(cls, sid, name, address, teleph, owner):
+        s = Shop(sid=sid, name=name, address=address, teleph=teleph, owner=owner)
+        return s
+
+
 class Food(models.Model):
     name = models.CharField(max_length=50)
     price = models.FloatField()
@@ -22,6 +28,12 @@ class Food(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @classmethod
+    def insert_food(cls, name, price, shop):
+        f = Food(name=name, price=price, shop=shop)
+        return f
+
 
 class Record(models.Model):
     rid = models.CharField(max_length=14)
@@ -33,8 +45,10 @@ class Record(models.Model):
     buyer = models.ForeignKey(User)
     shop = models.ForeignKey(Shop)
     sbpro = models.ForeignKey(SBProfile)
+
     def __unicode__(self):
         return self.rid
+
 
 class Fooditem(models.Model):
     name = models.CharField(max_length=50)
