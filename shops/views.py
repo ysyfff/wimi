@@ -43,10 +43,23 @@ def myshop(request, shop_id):
             else:
                 is_buyer = False
             selected_choose = request.REQUEST.getlist('choose')#######
-            selected_quantity = request.REQUEST.getlist('quantity')
+            all_quantity = request.REQUEST.getlist('quantity')
+            selected_quantity = []
+            leng = len(all_quantity)
+            for i in xrange(leng):
+                if all_quantity[i] != '----':
+                    selected_quantity.append(all_quantity[i])
             remark = request.POST['remark']
             if not selected_choose:
                 errors_msg.append('you do not choose anything!')
+                return render_to_response('shops/myshop.html',
+                    locals(),
+                    context_instance=RequestContext(request)
+                )
+            leng1 = len(selected_choose)
+            leng2 = len(selected_quantity)
+            if leng1 != leng2:
+                errors_msg.append('choose a quantity for each food')
                 return render_to_response('shops/myshop.html',
                     locals(),
                     context_instance=RequestContext(request)
@@ -55,7 +68,7 @@ def myshop(request, shop_id):
                 money = 0;
                 #create records
                 length = len(selected_choose)
-                for i in range(0,length):
+                for i in xrange(length):
                     sc = selected_choose[i]
                     qty = selected_quantity[i]
                     food = shop.food_set.get(pk=sc)
@@ -69,7 +82,7 @@ def myshop(request, shop_id):
                 record.save()
                 #create fooditem
                 length = len(selected_choose)
-                for i in range(0,length):
+                for i in xrange(length):
                     sc = selected_choose[i]
                     qty = selected_quantity[i]
                     food = shop.food_set.get(pk=sc)
