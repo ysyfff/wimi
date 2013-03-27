@@ -31,7 +31,6 @@ def clean_database():
 def insert_db():
     insert_user()
     insert_store()
-    insert_food()
 
 
 if __name__ == '__main__':

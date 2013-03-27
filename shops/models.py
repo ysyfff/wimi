@@ -14,25 +14,16 @@ class Shop(models.Model):
     def __unicode__(self):
         return self.name
 
-    @classmethod
-    def create_shop(cls, sid, name, address, teleph, owner):
-        s = Shop(sid=sid, name=name, address=address, teleph=teleph, owner=owner)
-        return s
-
 
 class Food(models.Model):
     name = models.CharField(max_length=50)
     price = models.FloatField()
+    remain = models.IntegerField(default=20)
 
     shop = models.ForeignKey(Shop)
 
     def __unicode__(self):
         return self.name
-
-    @classmethod
-    def insert_food(cls, name, price, shop):
-        f = Food(name=name, price=price, shop=shop)
-        return f
 
 
 class Record(models.Model):

@@ -21,19 +21,73 @@ shop
                     </div>
                     {% endif %}
                     <tr>
-                        <th >名称</th><th >单价(元)</th><th>数量(份)</th>
+                        <th style="width:310px;">名称</th><th >单价(元)</th><th>数量(份)</th><th>余量(份)</th>
                     </tr>
                     {% for s in shop.food_set.all %}
+                    {% if s.remain > 0 %}
                         <tr >
-                            <td>
+                            <td style="width:310px;">
                             <input type="checkbox" name="choose" value="{{s.id}}" id="s{{forloop.counter}}"/>
                             <label for="s{{ forloop.counter }}">{{s.name}}</label>
                             </td>
-                            <td>
-                            {{s.price}}
-                            </td>                      
+                            <td>{{s.price}}</td>                      
                             <td>
                                 <select name="quantity">
+                                    {% if s.remain == 1 %}
+                                    <option value="1" selected="selected">1</option>
+                                    {% elif s.remain == 2 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    {% elif s.remain == 3 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    {% elif s.remain == 4 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    {% elif s.remain == 5 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    {% elif s.remain == 6 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    {% elif s.remain == 7 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    {% elif s.remain == 8 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    {% elif s.remain == 9 %}
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    {% else %}
                                     <option value="1" selected="selected">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -44,9 +98,14 @@ shop
                                     <option value="8">8</option>
                                     <option value="9">9</option>
                                     <option value="10">10</option>
+                                    {% endif %}
                                 </select>
                             </td>
+                            
+                                <td>{{s.remain}}</td>
+                            
                         </tr>
+                        {% endif %}
                     {% endfor %}
                 </table>
                 <div id="s_rmk">

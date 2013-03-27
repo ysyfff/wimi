@@ -2,17 +2,7 @@
 # -*-encoding:utf8-*-
 from shops.models import Shop, Food
 from django.contrib.auth.models import User
-
-
-def insert_store():
-    for i in xrange(10):
-        sid = '6666666' + str(i)
-        name = 'wimi' + str(i)
-        teleph = '1355086238' + i
-        owner = User.objects.get(pk=i)
-        s = Shop.create_shop(sid=sid, name=name, address=name,
-            teleph=teleph, owner=owner)
-        s.save()
+from random import randint
 
 
 food = ['蘸水牛筋冻', '沾酱黄瓜', '柚子沙拉虾', '小米椒牛肉',
@@ -36,12 +26,29 @@ price = ['21', '9', '25', '25', '22', '9', '15',
     '15', '9', '9', '9', '21', '9', '25', '25',
     '22', '9', '15']
 
-fp = zip(food, price)
+fp = zip(food, price) 
 
 
-def insert_food():
-    for i in xrange(10):
+def insert_store():
+    store_n = 1
+    for i in xrange(1, 10):
+        sid = '6666666' + str(i)
+        teleph = '1355086238' + str(i)
+        owner = User.objects.get(pk=i)
+        p = owner.get_profile()
+        name = p.name
+        if p.flag == 0:
+            s = Shop.objects.create(sid=sid, name=name, address=name,
+                teleph=teleph, owner=owner)
+            s.save()
+            print 'create store success!'
+            store_n = store_n + 1
+        else:
+            print 'this user is a buyer!'
+
+    for i in xrange(1, store_n):
         s = Shop.objects.get(pk=i)
         for f in fp:
-            food = Food(name=f[0], price=f[1], shop=s)
+            food = Food.objects.create(name=f[0], price=f[1], shop=s)
             food.save()
+            print('create food success!')

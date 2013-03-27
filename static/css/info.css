@@ -21,4 +21,4 @@ p.flip{font-size:20px; padding:5px 0 5px 0;}
 #remark{float: right; position: relative;left: 6px;width: auto;height:auto;top:0px;}
 #remark textarea {background:url("/static/img/sidebar3.png");;color:#fff; border:1px solid red;}
 #mdffood{float: left; position: relative;width: auto;height:auto;top:0px;}
-#mdffood input {background:url("/static/img/sidebar3.png");color:#fff; border:1px solid red;font-size: 18px;padding: 4px 4px 2px 4px;}
+#mdffood input {background:url("/static/img/sidebar3.png");color:#fff; border:1px solid red;font-size: 18px;padding: 4px 4px 2px 4px; width: auto;}

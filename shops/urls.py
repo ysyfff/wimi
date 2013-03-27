@@ -21,5 +21,4 @@ urlpatterns = patterns('',
     #food
     url(r'^(?P<user_id>\d+)/all/food/$', views.allfood),
     url(r'^(?P<user_id>\d+)/add/food/$', views.addfood),
-    url(r'^(?P<user_id>\d+)/mdf/(?P<food_id>\d+)/food/$', views.mdffood),
 )

@@ -129,7 +129,7 @@ def myinfo(request, user_id): #######get from mysql
             is_buyer = False
         #look it
         try:
-	    profile = request.user.get_profile()
+	        profile = request.user.get_profile()
         except:
             errors_msg.append('You have not fill your info, so you can not see anything!')
             return render_to_response('home.html',

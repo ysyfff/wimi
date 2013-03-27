@@ -3,9 +3,9 @@
 #ms_box table {color: #000;  border-collapse:collapse;border: 1px solid red;}
 #ms_box table tr{border: 1px solid red;}
 #ms_box table caption {background:url("/static/img/sidebar3.png");;border:1px solid red; padding:5px 0 5px 0;font-size: 20px;color: #fff;}
-#ms_box table tr th{border: 1px solid red;width: 200px;background: url("/static/img/sidebar3.png");text-align: center;height: 30px;}
-#ms_box table tr td{border: 1px solid red;width: 200px;background: url("/static/img/sidebar3.png");}
-#ms_box table tr.alt td {border: 1px solid red;width: 200px;background: #7f7522;}
+#ms_box table tr th{border: 1px solid red;width: 100px;background: url("/static/img/sidebar3.png");text-align: center;height: 30px;}
+#ms_box table tr td{border: 1px solid red;width: 100px;background: url("/static/img/sidebar3.png");}
+#ms_box table tr.alt td {border: 1px solid red;width: 100px;background: #7f7522;}
 #s_btn {position: fixed; top:60px;right:15px;}
 #s_rmk {position: fixed; top:40px; left:2px;}
 #s_rmk textarea {background: url("/static/img/sidebar3.png");border: 1px solid red;color:#fff;}

@@ -17,24 +17,3 @@ class SBProfile(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    @classmethod
-    def create_user(cls, username, password, email=None):
-        user = User.objects.create_user(username=username,
-            password=password, email=None)
-        user.save()
-        profile = cls.objects.get(user=user)
-        return user, profile
-
-
-def create_user_profile(sender, instance, created, **kwargs):
-    """创建 userprofile 的方法.
-
-    此为创建 User 时候的信号机制中创建 userprofile 的方法。
-    signals 的细节请看官方文档:
-           https://docs.djangoproject.com/en/1.4/topics/signals/
-    """
-    if created:
-        SBProfile.objects.create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)

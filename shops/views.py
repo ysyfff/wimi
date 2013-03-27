@@ -73,6 +73,8 @@ def myshop(request, shop_id):
                     sc = selected_choose[i]
                     qty = selected_quantity[i]
                     food = shop.food_set.get(pk=sc)
+                    food.remain -= int(qty)
+                    food.save()
                     fooditem = Fooditem(name=food.name, price=food.price, quantity=qty, record=record)
                     fooditem.save()
                 Bag_PATH = '/shops/'+str(user_id)+'/current/bag/'
@@ -520,10 +522,18 @@ def allfood(request, user_id):
                 for s in shop:
                     s.food_set.filter(pk=food_id).delete()
             if value[0]=="m":
+                #write into sql
+                fname = 'fname' + str(food_id)
+                fprice = 'fprice' + str(food_id)
+                frem = 'frem' + str(food_id)
+                m_name = request.POST[fname]
+                m_price = request.POST[fprice]
+                m_rem = request.POST[frem]
+                print m_name, m_price, m_rem, '999999999'
                 for s in shop:
-                    mf = s.food_set.get(pk=food_id)
-                MDF_PATH='/shops/'+str(user_id)+'/mdf/'+str(food_id)+'/food/'
-                return redirect(MDF_PATH)
+                    print 'ok'
+                    s.food_set.filter(pk=food_id).update(
+                        name=m_name, price=m_price, remain=m_rem)
     return render_to_response('shops/allfood.html',
         locals(),
         context_instance=RequestContext(request)
@@ -553,31 +563,6 @@ def addfood(request, user_id):
         else:
             form = AddFoodForm()
     return render_to_response('shops/addfood.html',
-        locals(),
-        context_instance=RequestContext(request)
-    )
-
-def mdffood(request, user_id, food_id):
-    if request.user.is_authenticated():
-        user_id = request.user.id
-        username = request.user.username
-        is_login=True
-        profile = request.user.get_profile()
-        if profile.flag == 1:
-            is_buyer = True
-        else:
-            is_buyer = False
-        shop = request.user.shop_set.all()
-        for s in shop:
-            mf = s.food_set.get(pk=food_id)
-        if request.method=="POST":
-            name = request.POST['fname']
-            price =  request.POST['fprice']
-            for s in shop:
-                s.food_set.filter(pk=food_id).update(name=name, price=price)
-            ALL_PATH = '/shops/'+str(user_id)+'/all/food/'
-            return redirect(ALL_PATH)
-    return render_to_response('shops/mdffood.html',
         locals(),
         context_instance=RequestContext(request)
     )
